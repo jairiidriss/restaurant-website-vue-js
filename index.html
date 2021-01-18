@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Restaurant Website - Vue JS</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+        <!-- STYLE FILES -->
+		<link rel="stylesheet" href="Design/css/bootstrap.min.css">
+		<link rel="stylesheet" href="Design/css/main-style.css">
+
+		<!-- Fonts Files -->
+		<link rel="stylesheet" href="Design/fontawesome/css/all.min.css">
+    </head>
+    <body>
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+				<a class="navbar-brand" href="index.html">
+					Yah<span style="color: #ffc851;">Ya</span> Gastronomy
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav" style="margin-left: auto!important;">
+						<li class="nav-item active">
+							<a class="nav-link" href="#home">
+								Home
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#restau-pics">
+								Heritage
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#menus">
+								Menu
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#reservation">
+								Reservation
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#gallery">
+								Gallery
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact">
+								Contact
+							</a>
+						</li>
+					</ul>
+				</div>
+            </div>    
+        </nav>
+        <!-- Navbar End -->
+
+		<!-- Home Section Start -->
+		<section class = "home-section" id = "home">
+
+		</section>
+		<!-- Home Section End -->
+
+		<!-- Our Restaurant Pics Start -->
+		<section class="restau-pics" id="restau-pics" style="padding: 50px 0px;border-bottom: 2px solid #eee;overflow: hidden;">
+			<div class="container">
+				<div class="section-header">
+					<div class="section-tagline">
+						We are not the First but we are the BEST
+					</div>
+					<div class="section-title">
+						Our Restaurants
+					</div>
+					<hr class="separator">
+				</div>
+				<div id="restau-pics-slider" style="position: relative;">
+					<button @click.prevent="previous()" class="btn btn-outline-secondary" type="button" style="border-radius: 0px;">
+						<i class="fas fa-angle-double-left"></i>
+					</button>
+					<div id="ul-slider" style="overflow: hidden;margin: 10px 0px;" class="shadow-lg">
+						<ul style="list-style: none; display: flex;padding: 0px;margin: 0px;">
+							<li v-for = "image in images">
+								<div>
+									<img v-bind:src="image" :alt="image" style="width: 350px;">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<button @click.prevent="next()" type="button" class="btn btn-outline-primary next-arr" style="float: right;border-radius: 0px;">
+						<i class="fas fa-angle-double-right"></i>
+					</button>
+				</div>
+			</div>
+		</section>
+		<!-- Our Restaurant Pics End -->
+
+		<!-- Our Menus start -->
+		<section class="our-menus" id="menus">
+			<div class="container">
+				<div class="section-header">
+					<div class="section-tagline">
+						Discover our Menu and taste the difference!
+					</div>
+					<div class="section-title">
+						Our Menu
+					</div>
+					<hr class="separator">
+				</div>
+				<div id="menus-picker">
+					<div class="menu-categories">
+						<ul>
+							<li v-for = "menuCategory in menuCategories" v-bind:class="{ 'active' : menuCategory == currentTab}"
+								@click="toggleTab(menuCategory)">
+								{{ menuCategory }}
+							</li>
+						</ul>
+						<div id="burgers" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Burgers' == currentTab}">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/french-burger.jpeg" alt="French Burger">
+										</div>
+										<h5>
+											French
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$13
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/vegetables-burger.jpeg" alt="Vegetables Burger">
+										</div>
+										<h5>
+											Vegetables
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$22
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/vincent-burger.jpeg" alt="Vincent Burger">
+										</div>
+										<h5>
+											Vincent
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$13
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="desserts" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Desserts' == currentTab}">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/trilogie-de-verrines.jpg" alt="Trilogie de Verrines">
+										</div>
+										<h5>
+											Trilogie de Verrines
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$22
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/classic-chocolate-mousse.jpg" alt="Classic Chocolate Mousse">
+										</div>
+										<h5>
+											Classic Chocolate Mousse
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$22
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="drinks" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Drinks' == currentTab}">
+
+						</div>
+						<div id="pasta" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Pasta' == currentTab}">
+
+						</div>
+						<div id="pizzas" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Pizzas' == currentTab}">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/diablo-pizza.png" alt="Diablo Pizza">
+										</div>
+										<h5>
+											Diablo
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$13
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/carbonara-pizza.png" alt="Carbonara Pizza">
+										</div>
+										<h5>
+											Carbonara
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$15
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/margherita-pizza.png" alt="Margherita Pizza">
+										</div>
+										<h5>
+											Margherita
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$21
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/prosciutto-pizza.png" alt="Prosciutto Pizza">
+										</div>
+										<h5>
+											Prosciutto
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$17
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="menu_block_item">
+										<div class="menu_img">
+											<img src="Design/images/vincent-pizza.png" alt="Vincent Pizza">
+										</div>
+										<h5>
+											Vincent
+										</h5>
+										<p class="menu_description">
+											Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio enim, ratione hic doloremque
+										</p>
+										<div class="menu_price">
+											$17
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="salads" class="menu-tabs" v-bind:class="{ 'active_menu_tab' : 'Salads' == currentTab}">
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- Our Menus end -->
+
+		<!-- Book Appointment Start-->
+		<section class="book-appointment" id="reservation">
+			<div class="container">
+				<div class="section-header">
+					<div class="section-tagline" style="color: white;">
+						You have a special event? we are here for you!
+					</div>
+					<div class="section-title">
+						Make a Reservation
+					</div>
+					<hr class="separator" style="background-color: white;">
+				</div>
+				<div class="reservation-block">
+					<div class="form-block">
+						<form action="" id="appointment-form" @submit="checkForm" method="POST">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="fullname">Full Name</label>
+										<input type="text" class="form-control"  v-model="full_name">
+										<div class="invalid-feedback" style="display: block;" v-if="full_name === null">
+											Full name required
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="email">Email address</label>
+										<input type="text" class="form-control" v-model="email">
+										<small class="form-text text-muted" style="color: #ffffff !important;">We'll never share your email with anyone else.</small>
+										<div class="invalid-feedback" style="display: block;" v-if="email === null">
+											Valid email required
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="phone">Phone</label>
+										<input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model="phone">
+										<small class="form-text text-muted" style="color: #ffffff !important;">Format: 123-45-678</small>
+										<div class="invalid-feedback" style="display: block;" v-if="phone === null">
+											Phone is required
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="date">Date</label>
+										<input type="date" class="form-control"  v-model="date" min="">
+										<div class="invalid-feedback" style="display: block;" v-if="date === null">
+											Date is required
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="time">Time</label>
+										<input type="time" class="form-control" v-model="time">
+										<div class="invalid-feedback" style="display: block;" v-if="time === null">
+											Time is required
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="message">Message</label>
+								<textarea class="form-control" v-model = "message" style="resize: none;"></textarea>
+								<div class="invalid-feedback" style="display: block;" v-if="message === null">
+									Message is required
+								</div>
+							</div>
+							<p>
+								<input type="submit" value="Book a table" class="submit-bttn">
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Book Appointment End-->
+
+		<!-- Image Gallery Start -->
+		<section class="image-gallery" id="gallery">
+			<div class="container">
+				<div class="section-header">
+					<div class="section-title">
+						Image Gallery
+					</div>
+					<hr class="separator">
+				</div>
+				<div class="row">
+					<div class="col-md-3" v-for = "(galleryImage, index) in galleryImages">
+						<div class="image_gallery_item" @click = "enLargeImage(index)" >
+							<img :src="galleryImage" alt="" >
+							<div class="image_overlay"></div>
+						</div>
+						<!-- The Modal -->
+
+						<div :id="index" class="my-modal" @click = "closeModal(index)">
+							<img class="my-modal-content" :src="galleryImage">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Image Gallery End -->
+
+		<!-- Footer Start -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p style="margin: 0px;">
+							Copyright © 2021 YahYa Gastronomy. All Rights Reserved.
+						</p>
+					</div>
+					<div class="col-md-6">
+						<ul class="social-net">
+							<li>
+								<a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+							</li>
+							<li>
+								<a href="https://www.instagram.com/" target="_blank">
+									<i class="fab fa-instagram"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer End -->
+
+		<!-- VUS JS CDN -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<!-- JS FILES -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="Design/js/bootstrap.min.js"></script>
+		<script src="Design\js\main-script.js"></script>
+    </body>
+</html>
