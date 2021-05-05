@@ -54,7 +54,7 @@ new Vue({
     },
     methods:{
         checkForm: function(event){
-            if( this.full_name && this.email && this.phone && this.date && this.message && this.time)
+            if( this.full_name && this.validEmail(this.email) && this.phone && this.date && this.message && this.time)
             {
                 return true;
             }
@@ -67,12 +67,7 @@ new Vue({
                 this.full_name = null;
             }
             
-            if( !this.email)
-            {
-                this.errors.push("Email is required");
-                this.email = null;
-            }
-            else if (!this.validEmail(this.email)) 
+            if (!this.validEmail(this.email)) 
             {
                 this.errors.push('Valid email required.');
                 this.email = null;
